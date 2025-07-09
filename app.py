@@ -15,7 +15,6 @@ df.to_csv("dummy_retail_transactions.csv", index=False)
 
 data = pd.read_csv("dummy_retail_transactions.csv")
 data['date'] = pd.to_datetime(data['date'])
-data['date'] = data['date'].dt.strftime('%Y-%m-%d')
 st.dataframe(data.head(4))
 
 st.set_page_config(page_title="Query Tool", layout="wide")
@@ -43,8 +42,10 @@ with col1:
 
     min_date = data['date'].min()
     max_date = data['date'].max()
+    min_date_str = min_date.strftime('%Y-%m-%d')
+    max_date_str = max_date.strftime('%Y-%m-%d')
 
-    st.subheader(f"Select date range {min_date} - {max_date}")
+    st.subheader(f"Select date range {min_date_str} - {max_date_str}")
     start_date = st.date_input("start date"
                                , value=min_date
                                , min_value=min_date
@@ -55,10 +56,10 @@ with col1:
                              , min_value=min_date
                              , max_value=max_date
                             )
-    final_data = data[(data['date'] >= start_date) & (data['date'] <= end_date)]
+    data = data[(data['date'] >= start_date) & (data['date'] <= end_date)]
 with col2:
     # Execute each aggregation and store the result
-    result = {alias: func(final_data[col]) for alias, col, func in aggregations}
+    result = {alias: func(data[col]) for alias, col, func in aggregations}
     # Convert result to a single-row DataFrame
     agg_df = pd.DataFrame([result])
     # Show DataFrame
