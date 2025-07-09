@@ -51,6 +51,7 @@ with col1:
                                , min_value=min_date
                                , max_value=max_date
                                )
+    st.write(f"type of date input : {type(start_date)}")
     end_date = st.date_input("end date"
                              , value=max_date
                              , min_value=min_date
