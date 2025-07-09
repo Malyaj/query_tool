@@ -90,7 +90,8 @@ with col1:
 
     min_date = data['date'].min()
     max_date = data['date'].max()
-    
+
+    st.subheader(f"Select date range {min_date} - {max_date}")
     start_date = st.date_input("start date"
                                , value=min_date
                                , min_value=min_date
@@ -101,7 +102,7 @@ with col1:
                              , min_value=min_date
                              , max_value=max_date
                             )
-    data[(start_date > data['date']) & (data['date'] < end_date )]
+    data = data[(start_date > data['date']) & (data['date'] < end_date )]
 with col2:
     # Execute each aggregation and store the result
     result = {alias: func(data[col]) for alias, col, func in aggregations}
