@@ -65,6 +65,8 @@ with col1:
     with st.expander("Select Stores"):
         stores_selections = st.multiselect("Choose items:"
                                            , all_stores)
+        if stores_selections:
+            st.write(stores_selections)
     
 with col2:
     # Execute each aggregation and store the result
