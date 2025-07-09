@@ -63,6 +63,7 @@ df = generate_dummy_retail_transactions(num_transactions=500)
 df.to_csv("dummy_retail_transactions.csv", index=False)
 
 data = pd.read_csv("dummy_retail_transactions.csv")
+data['date'] = pd.to_datetime(data['date'])
 st.dataframe(data.head(4))
 
 st.set_page_config(page_title="Query Tool", layout="wide")
@@ -102,7 +103,7 @@ with col1:
                              , min_value=min_date
                              , max_value=max_date
                             )
-    data = data[(start_date > data['date']) & (data['date'] < end_date )]
+    data = data[(data['date'] >= start_date) & (data['date'] <= end_date)]
 with col2:
     # Execute each aggregation and store the result
     result = {alias: func(data[col]) for alias, col, func in aggregations}
