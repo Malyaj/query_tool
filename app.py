@@ -52,7 +52,7 @@ with col1:
                                )
     start_date = pd.to_datetime(start_date)
     
-    end_date = st.date_input(f"To date (earliest {max_date_str}):"
+    end_date = st.date_input(f"To date (latest {max_date_str}):"
                              , value=max_date
                              , min_value=min_date
                              , max_value=max_date
