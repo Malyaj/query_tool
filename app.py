@@ -45,7 +45,8 @@ with col1:
     min_date_str = min_date.strftime('%Y-%m-%d')
     max_date_str = max_date.strftime('%Y-%m-%d')
 
-    st.write(f"Select date range {min_date_str} - {max_date_str}")
+    st.write(f"Select date range :")
+    st.write(f"[{min_date_str} - {max_date_str}]")
     start_date = st.date_input(f"start date {min_date_str}"
                                , value=min_date
                                , min_value=min_date
