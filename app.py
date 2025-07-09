@@ -22,7 +22,7 @@ st.set_page_config(page_title="Query Tool", layout="wide")
 col1, col2 = st.columns([1, 4])  # narrow left col, wider right col
 with col1:
     # Multi-select dropdown for metrics
-    metrics_options = ['spend', 'units', 'visits', "spend(card), "units(card)", "visits(card)"]
+    metrics_options = ['spend', 'units', 'visits', 'spend_card', 'units_card', 'visits_card']
     metrics_selected = st.multiselect("Select Metrics:"
                                       , metrics_options
                                       )
