@@ -55,10 +55,10 @@ with col1:
                              , min_value=min_date
                              , max_value=max_date
                             )
-    data = data[(data['date'] >= start_date) & (data['date'] <= end_date)]
+    final_data = data[(data['date'] >= start_date) & (data['date'] <= end_date)]
 with col2:
     # Execute each aggregation and store the result
-    result = {alias: func(data[col]) for alias, col, func in aggregations}
+    result = {alias: func(final_data[col]) for alias, col, func in aggregations}
     # Convert result to a single-row DataFrame
     agg_df = pd.DataFrame([result])
     # Show DataFrame
