@@ -51,12 +51,15 @@ with col1:
                                , min_value=min_date
                                , max_value=max_date
                                )
-    st.write(f"type of date input : {type(start_date)}")
+    start_date = pd.to_datetime(start_date)
+    
     end_date = st.date_input("end date"
                              , value=max_date
                              , min_value=min_date
                              , max_value=max_date
                             )
+    end_date = pd.to_datetime(end_date)
+    
     data = data[(data['date'] >= start_date) & (data['date'] <= end_date)]
 with col2:
     # Execute each aggregation and store the result
