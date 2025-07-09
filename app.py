@@ -45,15 +45,15 @@ with col1:
     min_date_str = min_date.strftime('%Y-%m-%d')
     max_date_str = max_date.strftime('%Y-%m-%d')
 
-    st.subheader(f"Select date range {min_date_str} - {max_date_str}")
-    start_date = st.date_input("start date"
+    st.write(f"Select date range {min_date_str} - {max_date_str}")
+    start_date = st.date_input(f"start date {min_date_str}"
                                , value=min_date
                                , min_value=min_date
                                , max_value=max_date
                                )
     start_date = pd.to_datetime(start_date)
     
-    end_date = st.date_input("end date"
+    end_date = st.date_input(f"end date {max_date_str}"
                              , value=max_date
                              , min_value=min_date
                              , max_value=max_date
