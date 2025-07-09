@@ -45,16 +45,14 @@ with col1:
     min_date_str = min_date.strftime('%Y-%m-%d')
     max_date_str = max_date.strftime('%Y-%m-%d')
 
-    st.write(f"From date (earliest {min_date_str}):")
-    start_date = st.date_input(f"start date {min_date_str}"
+    start_date = st.date_input(f"From date (earliest {min_date_str}):"
                                , value=min_date
                                , min_value=min_date
                                , max_value=max_date
                                )
     start_date = pd.to_datetime(start_date)
-
-    st.write(f"To date (earliest {max_date_str}):")
-    end_date = st.date_input(f"end date {max_date_str}"
+    
+    end_date = st.date_input(f"To date (earliest {max_date_str}):"
                              , value=max_date
                              , min_value=min_date
                              , max_value=max_date
