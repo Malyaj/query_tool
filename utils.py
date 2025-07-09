@@ -7,10 +7,6 @@ from datetime import datetime, timedelta
 random.seed(42)
 np.random.seed(42)
 
-import pandas as pd
-import random
-from datetime import datetime, timedelta
-
 def generate_dummy_retail_transactions(
     num_transactions=1000,
     max_items_per_transaction=5,
