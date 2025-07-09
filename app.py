@@ -86,9 +86,22 @@ with col1:
     include_refund_choice = st.radio("Choose an option:", include_refund)
 
     if include_refund_choice == include_refund_choice[-1]:
-        data = data['net_spend_amount']>=0.0
+        data = data[data['net_spend_amount']>=0.0]
 
-st.write(f"You selected: {choice}")
+    min_date = data['date'].min()
+    max_date = data['date'].max()
+    
+    start_date = st.date_input("start date"
+                               , value=min_date
+                               , min_value=min_date
+                               , max_value=max_date
+                               )
+    end_date = st.date_input("end date"
+                             , value=max_date
+                             , min_value=min_date
+                             , max_value=max_date
+                            )
+    data[(start_date > data['date']) & (data['date'] < end_date )]
 with col2:
     # Execute each aggregation and store the result
     result = {alias: func(data[col]) for alias, col, func in aggregations}
