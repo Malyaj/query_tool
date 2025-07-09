@@ -66,7 +66,6 @@ data = pd.read_csv("dummy_retail_transactions.csv")
   
 
 st.set_page_config(page_title="Query Tool", layout="wide")
-data = generate_date()
 
 
 # Multi-select dropdown for metrics
