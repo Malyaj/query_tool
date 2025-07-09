@@ -55,8 +55,7 @@ with col1:
                              , min_value=min_date
                              , max_value=max_date
                             )
-    data = data[data['date'] >= start_date]
-    data = data[data['date'] <= end_date]
+    data = data[(data['date'] >= start_date) & (data['date'] <= end_date)]
 with col2:
     # Execute each aggregation and store the result
     result = {alias: func(data[col]) for alias, col, func in aggregations}
