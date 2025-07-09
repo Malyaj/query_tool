@@ -83,7 +83,7 @@ with col1:
         aggregations.append(('visits', 'transaction_id', pd.Series.nunique))
 
     include_refund = ['Include Refunds', 'Exclude Refunds']
-    include_refund_choice = st.radio("Choose an option:", options)
+    include_refund_choice = st.radio("Choose an option:", include_refund)
 
     if include_refund_choice == include_refund_choice[-1]:
         data = data['net_spend_amount']>=0.0
