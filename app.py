@@ -62,7 +62,7 @@ with col1:
     data = data[(data['date'] >= start_date) & (data['date'] <= end_date)]
 
     all_stores = data['store_id'].unique().tolist()
-    stores_selections = st.multiselect("Choose items:", all_stores)    
+    stores_selections = st.multiselect("Choose store:", all_stores)    
     
 with col2:
     # Execute each aggregation and store the result
