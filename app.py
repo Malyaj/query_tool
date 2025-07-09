@@ -63,7 +63,7 @@ df = generate_dummy_retail_transactions(num_transactions=500)
 df.to_csv("dummy_retail_transactions.csv", index=False)
 
 data = pd.read_csv("dummy_retail_transactions.csv")
-df['date'] = df['date'].dt.strftime('%Y-%m-%d')
+data['date'] = data['date'].dt.strftime('%Y-%m-%d')
 st.dataframe(data.head(4))
 
 st.set_page_config(page_title="Query Tool", layout="wide")
