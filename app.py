@@ -67,28 +67,25 @@ st.dataframe(data)
 
 st.set_page_config(page_title="Query Tool", layout="wide")
 
-
-# Multi-select dropdown for metrics
-metrics_options = ['spend', 'units', 'visits']
-metrics_selected = st.multiselect("Select Metrics:"
-                                  , metrics_options
-                                  )
-
-# metrics_selected = ['spend', 'visits']
-aggregations = []
-if 'spend' in metrics_selected:
-    aggregations.append(('spend', 'net_spend_amount', sum))
-if 'units' in metrics_selected:
-    aggregations.append(('units', 'item_qty', sum))
-if 'visits' in metrics_selected:
-    aggregations.append(('visits', 'transaction_id', pd.Series.nunique))
-
-# Execute each aggregation and store the result
-result = {alias: func(data[col]) for alias, col, func in aggregations}
-
-# Convert result to a single-row DataFrame
-agg_df = pd.DataFrame([result])
-
-# Show DataFrame
-st.subheader("Data Table:")
-st.dataframe(agg_df)  # Interactive table
+col1, col2 = st.columns([1, 4])  # narrow left col, wider right col
+with col1:
+    # Multi-select dropdown for metrics
+    metrics_options = ['spend', 'units', 'visits']
+    metrics_selected = st.multiselect("Select Metrics:"
+                                      , metrics_options
+                                      )
+    aggregations = []
+    if 'spend' in metrics_selected:
+        aggregations.append(('spend', 'net_spend_amount', sum))
+    if 'units' in metrics_selected:
+        aggregations.append(('units', 'item_qty', sum))
+    if 'visits' in metrics_selected:
+        aggregations.append(('visits', 'transaction_id', pd.Series.nunique))
+with col2:
+    # Execute each aggregation and store the result
+    result = {alias: func(data[col]) for alias, col, func in aggregations}
+    # Convert result to a single-row DataFrame
+    agg_df = pd.DataFrame([result])
+    # Show DataFrame
+    st.subheader("Data Table:")
+    st.dataframe(agg_df)  # Interactive table
