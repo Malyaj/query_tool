@@ -81,6 +81,14 @@ with col1:
         aggregations.append(('units', 'item_qty', sum))
     if 'visits' in metrics_selected:
         aggregations.append(('visits', 'transaction_id', pd.Series.nunique))
+
+    include_refund = ['Include Refunds', 'Exclude Refunds']
+    include_refund_choice = st.radio("Choose an option:", options)
+
+    if include_refund_choice == include_refund_choice[-1]:
+        data = data['net_spend_amount']>=0.0
+
+st.write(f"You selected: {choice}")
 with col2:
     # Execute each aggregation and store the result
     result = {alias: func(data[col]) for alias, col, func in aggregations}
