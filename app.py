@@ -17,7 +17,7 @@ data = pd.read_csv("dummy_retail_transactions.csv")
 data['date'] = pd.to_datetime(data['date'])
 st.header('Query Tool')
 st.dataframe(data.head(4))
-st.markdown("---")
+st.markdown("*---*")
 
 st.set_page_config(page_title="Query Tool", layout="wide")
 
